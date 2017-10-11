@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html style="overflow:hidden">
+	<head>
+		<title>Penzura</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="./css/demo.css">
+		<link rel="stylesheet" href="./css/font-awesome.css">
+		<link rel="stylesheet" href="./dist/css/medium-editor.css">
+		<link rel="stylesheet" href="./dist/css/themes/default.css">
+		<link href='css/main.css' rel='stylesheet' type='text/css'>
+		<link href='css/home.css' rel='stylesheet' type='text/css'>
+		<script src="./dist/js/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./dist/js/jquery-1.11.0.min.js"></script>
+		<script src="./dist/js/medium-editor.js"></script>
+		<script src='dist/js/main.js'></script>
+	</head>
+	<body spellcheck="false">
+		<div class="topBar">
+			<table>
+				<tr>
+					<td width="75%">
+						<div id="companyLogo">
+							<span style="font-family: 'ar berkley';">pen.</span>
+							<span style="font-family: 'vrinda';position:relative;left:-3px;">Zura</span>
+						</div>
+					</td>
+					<td width="100px">
+						<div id="saveButton">
+							<a href="#"> Save </a>
+						</div>
+					</td>
+					<td width="100px">
+						<div id="printButton">
+							<a href="#" onclick="window.print(); return false;"> Print </a>
+						</div>
+					</td>
+					<td>
+						<div id="userDiv">
+							<div id="userLink">
+								<a href="#"/></a>
+							</div>
+							<div id="settingLink" style="display:none;visibility:hidden">
+								<a href="#"/> Settings </a>
+							</div>
+							<div id="logoutLink" class="roundedBottomBorder" style="visibility:hidden">
+								<a href="/LogoutServlet"/> Logout </a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="loadingBar"></div>

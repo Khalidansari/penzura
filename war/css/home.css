@@ -1,0 +1,540 @@
+#saveButton, #printButton {
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  font-family: "open sans";
+  width: 75px;
+  font-size: 15px;
+  top: 7px;
+}
+
+#saveButton:hover, #printButton:hover {			
+	background-color: #0072FF;
+	font-size: 15px;
+	//top: 7px;
+}
+
+#saveButton a, #printButton a {	
+	display:block;	
+	text-decoration: none;
+	font-size: 12px;
+	position: relative;	
+	cursor: pointer;		
+	height:42px;
+	top:5px;	
+	color:white;
+	text-align:center;
+}
+ol {
+	font-size:12px;
+}
+
+#deleteButton {
+
+	//background:#AAAAAA;
+}
+
+#deleteButton.over {
+
+	//background:#CCCCCC;
+}
+			
+.holder {
+	
+	border-bottom:none;
+	//background-color:grey;
+	margin-left:0px;
+	height:95%;
+	margin:0px;
+	padding:20px;
+	margin-top:-27px;
+	//background:url('./noise.png');
+	color:#3A4145;	
+}
+
+.timestamp {
+
+	align-content: center;
+	align-self: center;
+	text-align: center;
+	top: 52px;
+	position: relative;
+	font-size: 10px;
+	color: #777777;
+}
+
+.codearea {
+	width:800px;
+	height:400px;
+	resize:both;
+	//margin:10px;
+	//overflow:scroll;
+	border: 1px solid #AAAAAA;
+	//border-radius: 9px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.noteTab > div > span {
+	font-size: 11px;
+}
+
+.wordwrap {   
+   	word-wrap: break-word;      /* IE */
+   	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	//width: 305px;
+}
+
+.ulClass {
+	
+	position: absolute;
+	bottom: 0px;
+	height: auto;
+	padding-top: 0px;
+	right: 0px;
+	top: 10px;
+	left: 0px;		
+	overflow-y:auto;
+	overflow-x:hidden;
+	z-index:1;				
+}			
+
+.ulClassAdd {
+	
+	position: absolute;
+	bottom: 0px;				
+	height: auto;
+	padding-top: 0px;
+	right: 0px;
+	top: -21px;
+	left: 0px;				
+}
+
+.ulClassRemove {
+	
+	position: absolute;
+	bottom: 0px;				
+	height: auto;
+	padding-top: 0px;
+	right: 0px;
+	bottom:-28px;
+	left: 0px;				
+}
+.ulClassRemove:hover {
+	background-color: rgb(190,190,190);				
+}
+.noteTab.selectedTab {
+			
+	//background: linear-gradient(#EEF3F8, #EEF3F8) repeat scroll 0% 0% #EEF3F8;
+	background-color:rgb(244,244,244);
+	cursor:default;
+}
+
+.noteTab:hover {
+
+	background: linear-gradient(#EEF3F8, #DEE3E8) repeat scroll 0% 0% #EEFFFE;
+}
+
+.noteTab {
+
+	padding: 12px 10px 12px 25px;
+	margin-left:-40px;
+	//border-bottom: solid #E0E0E0 1px;
+	cursor:pointer;
+	height:25px;
+}			
+
+/*
+p, pre, blockquote {
+	margin-top: 0em;
+	font-size:16px;
+	margin-bottom:-0.5em;
+	font-family: "open sans";				
+	top:60px;
+	position:relative;
+}
+
+
+p, pre, blockquote {
+	margin-top: 0em;
+	font-size:16px;
+	margin-bottom:-0.5em;
+	font-family: "open sans";				
+	top:60px;
+	position:relative;
+}
+*/
+
+p, pre, blockquote, .editable ol, .editable ul {
+	margin-top: 0em;
+	font-size:12px;
+	margin-bottom:-0.5em;
+	font-family: arial;				
+	top:30px;
+	position:relative;
+}
+
+blockquote > p {
+
+	position:static;	
+}
+
+html, body, #mainTable {
+  height: 100%;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-left:0px;
+  margin-right:0px;
+}
+
+#userDiv a {
+	
+	color:white;
+}
+
+.sidebar {
+	-moz-user-select: none;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 9px;
+	bottom: 0px;
+	width: 320px;
+
+	margin-top:30px;
+	background-color:rgb(207,207,207);
+	//overflow-y:auto;
+	//background:url('./noise.png');
+	color:grey;
+	font-family: century gothic;
+	//font-weight: bold;
+}
+
+.note, .firstNote {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	top: 40px;
+	padding-bottom: 0px;
+	line-height: 1.4em;
+	margin:0px;
+
+	height:calc(100% - 40px);				
+	overflow-y:auto;
+	background-color:#FEFEFE;
+	font-family: "open sans", "century gothic";
+}
+
+.topBar {
+	width: 100%;
+	position:relative;
+	//background-color: #F1F1F1;
+	z-index: 10;
+	//border-bottom: 1px solid #CCCCCC;
+	height: 40px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	background-color: #0072C6;
+}
+			
+#companyLogo {			
+	max-height:50%;
+	cursor:pointer;
+	top: 4px;
+	position: relative;				
+	height:24px;
+	left: 17px; 
+	font-size: 16px;	
+	color:white;
+}
+
+#userDiv {			
+	color:white;
+	text-align:center;
+	height:30px;
+	float:right;	
+	font-family:"century gothic";
+	//font-weight:bold;
+	font-size:12px;		
+	left: 10px;
+  	position: relative;
+  	width:200px;
+}
+
+#userLink {			
+	width: 200px;
+	//background-color: #E2E2E2;
+	font-size: 15px;
+	text-decoration: none;
+	cursor: pointer;
+	//opacity: 0.75;
+	//border-right: 1px solid #A0A0A0;
+	//border-left: 1px solid #A0A0A0;
+	//border-bottom: 1px solid #A0A0A0;
+	position:relative;
+	/* top: 7px; */
+}
+
+#userLink:hover {			
+	width: 200px;
+	background-color: #0072FF;
+	font-size: 15px;
+	text-decoration: none;
+	cursor: pointer;
+	//opacity: 0.75;
+	//border-right: 1px solid #A0A0A0;
+	//border-left: 1px solid #A0A0A0;
+	//border-bottom: 1px solid #A0A0A0;
+	position:relative;
+	//top: 7px;
+}
+
+.userLinkClassForJS {			
+	width: 200px;
+	background-color: #0072FF;
+	font-size: 15px;
+	text-decoration: none;
+	cursor: pointer;
+	//opacity: 0.75;
+	//border-right: 1px solid #A0A0A0;
+	//border-left: 1px solid #A0A0A0;
+	//border-bottom: 1px solid #A0A0A0;
+	position:relative;
+	//top: 7px;
+}
+
+#logoutLink, #settingLink {			
+	width: 200px;
+	background-color: #0072C6;
+	font-size: 15px;
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.75;
+	//border-right: 1px solid #A0A0A0;
+	//border-left: 1px solid #A0A0A0;
+	//border-bottom: 1px solid #A0A0A0;
+	position:relative;
+	//top: 7px;
+}
+
+#logoutLink:hover, #settingLink:hover {			
+	width: 200px;
+	background-color: #0072FF;
+	font-size: 15px;
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 0.75;
+	//border-right: 1px solid #A0A0A0;
+	//border-left: 1px solid #A0A0A0;
+	//border-bottom: 1px solid #A0A0A0;
+	position:relative;
+	//top: 7px;
+}
+
+.roundedBottomBorder {		
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+#userLink a, #logoutLink  a, #settingLink a{		
+	display:block;	
+	text-decoration: none;
+	font-size: 12px;
+	position: relative;	
+	cursor: pointer;		
+	height:42px;
+	top:5px;		
+}
+
+.topBar > table {			
+	text-decoration: none;
+	color: #555555;
+	font-size: 15px;
+	top: -12px;
+	position: relative;
+	padding-right: 30px;
+	float:right;
+	width: 100%;
+}
+
+.topBar > table > td {			
+	position: relative;		
+	float:right;
+}
+
+.hresizeable {
+
+	width: 20px;
+	//background-color: red;
+	left: 320px;
+	cursor: w-resize;
+	//border-left: 1px solid #E0E0E0;
+	z-index:2;
+	background-color:white;
+}
+
+.editable > h2 {
+
+	top: 0px;
+	position: relative;
+	text-align: center;
+	font-size:18px;
+}
+			
+.editable > h2:after {
+
+	width: 50%;
+	position: absolute;
+	content: "";
+	border-bottom: 1px solid #CDCDCD;
+	left: 25%;
+	bottom: -8px;
+}
+
+#loadingBar {
+
+	overflow:inherit !important;
+	box-shadow: 0 0px 10px rgba(255, 0, 0, 0.5);
+	position: relative;
+}
+
+.newPageButton {
+
+	//background-color:#AAAAAA;
+	padding: 12px 10px 12px 25px;
+	margin-left:-40px;
+	//border-bottom: solid #E0E0E0 1px;
+	cursor:pointer;
+	height:25px;				
+	list-style-type:none;
+	padding: 0px 10px 10px;
+	color:rgb(0, 114, 198);
+}
+
+.newPageButton:hover {
+
+	//background-color:#CCCCCC;
+	padding: 12px 10px 12px 25px;
+	margin-left:-40px;
+	//border-bottom: solid #E0E0E0 1px;
+	cursor:pointer;
+	//height:20px;				
+	list-style-type:none;
+	padding: 0px 10px 10px;
+}
+
+.firstParaClass {
+
+	top:60px;
+	position:relative;
+}
+
+.controlAreaMain {
+
+	background-color: white;
+	//border: 1px solid #AAAAAA;
+	height: 17px;
+	width: 200px;
+	position: relative;
+	//left: 10px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top: 1px solid #AAAAAA;
+	border-left: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	//top:10px;
+}
+
+.controlAreaSelect {
+
+	height: 15px;
+	font-size: 10px;
+	top: -8px;
+	position: relative;
+	border: white;
+	left: 7px;
+}
+
+.controlAreaCloseImg{
+
+	cursor: pointer; 
+	top: -6px; 
+	position: relative; 
+	left: 117px; 
+	height: 8px;
+	//opacity:0.5;
+}
+
+.controlAreaCloseImg:hover{
+
+	cursor: pointer; 
+	top: -6px; 
+	position: relative; 
+	left: 117px; 
+	height: 8px;
+	opacity:0.5;
+}
+
+#settingLink, #logoutLink {
+
+	//visibility:hidden;
+}
+
+#loadingBar {
+	height: 1px;
+	z-index: 9;
+	width: 0%;
+	background-color: red;
+}
+
+.plusText {
+	font-family:&#39;open sans&#39;;
+	font-size: 19px;position: relative;
+}
+
+.newpageText {
+	font-family:&#39;Century Gothic&#39;;
+	font-size: 12px;
+	top: -2px;
+	left: 5px;
+	position: relative;
+}
+
+@media print {
+
+	.topBar{
+		display:none;
+	}
+	
+	#loadingBar{				
+		display:none;
+	}
+	
+	#sideBar{
+	
+		display:none;
+	}
+	
+	#resizingBar {
+		display:none;
+	}
+	
+	.noteSizePosition {
+		//position:absolute;					
+		width:100% !important;	
+		left:0px !important;					
+		top:0px !important;
+		overflow-y:hidden;
+		height:auto;
+	}
+	
+	.note, .firstNote {
+	
+		position:static;
+	}
+}

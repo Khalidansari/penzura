@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My | Complete Notes</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="./css/demo.css">
+		<link rel="stylesheet" href="./css/font-awesome.css">
+		<link rel="stylesheet" href="./dist/css/medium-editor.css">
+		<link rel="stylesheet" href="./dist/css/themes/default.css">
+		<style>
+			p {
+				margin-top: 0em;
+				margin-bottom:1em;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div class="editable" id="holder">
+				<h2>Tezvaz - Notes</h2>
+				<p tabindex="0">This is the notes I was talkingabout</p>
+				<p tabindex="1">Oh! Alright so this is the notes you were talking about</p>
+			</div>
+		</div>
+		<script src="./dist/js/jquery-1.11.0.min.js"></script>
+		<script src="./dist/js/medium-editor.min.js"></script>
+		<script>
+		
+			var editor = new MediumEditor('.editable', {
+					buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'superscript', 'subscript', 'orderedlist', 'unorderedlist', 'pre', 'outdent', 'indent'],
+					buttonLabels: 'fontawesome'
+				});
+				
+		</script>
+		<script>
+			var focusItem = null; 
+			var insertedImage = null;
+			var holder = document.getElementById('holder');
+			var holderWidth = holder.clientWidth;
+						 
+			holder.ondragover = function () { return false; };
+			holder.ondragend = function () { return false; };
+
+			holder.ondrop = function (e) {
+
+								var file = e.dataTransfer.files[0];
+
+								var reader = new FileReader();
+								 
+								reader.onload = function (event) {
+			
+									var objecturl =  window.URL.createObjectURL(file);
+
+									focusItem.innerHTML = focusItem.innerHTML + '<img src="'+ objecturl + '" width="' + holderWidth + '"/>';
+									
+									if (window.saveAs) {
+										window.saveAs(file, 'my.jpg');
+									} else {
+										var objecturl =  window.URL.createObjectURL(file);
+									}
+								};
+
+								reader.readAsDataURL(file);
+
+								return false;
+							};
+
+			window.onload = function() {
+				
+				$('p').focus( function() {
+					
+					focusItem = this; 
+				});
+				
+				if (!window.Clipboard) {
+
+				   var pasteCatcher = document.getElementById("holder");
+
+				   pasteCatcher.setAttribute("contenteditable", "");
+
+				   pasteCatcher.style.opacity = 1;
+
+				   pasteCatcher.focus();
+
+				   if(document.addEventListener) {
+
+						document.addEventListener("click", function() { pasteCatcher.focus(); });
+						document.addEventListener("paste", fireFFPDelayed);
+						
+				   } else if (document.attachEvent) {
+
+						document.attachEvent("onclick", function() { pasteCatcher.focus(); });
+				   }				  
+				} 
+
+				if(document.addEventListener) {
+
+					window.addEventListener("paste", pasteHandler);
+					
+				} else if (document.attachEvent) {
+
+					document.attachEvent("onpaste", pasteHandler);
+				}
+			}
+
+			function firefoxPaste(element) {
+
+				var img = element.getAttribute('src');
+				var blobImage = base64toBlob(img.split(',')[1], img.split('data:')[1].split(';')[0]);
+				console.log(img);
+				var URLObj = window.URL || window.webkitURL;
+				var pastedURL = URLObj.createObjectURL(blobImage);
+				element.src = pastedURL;
+				element.width = holderWidth;
+			}
+			
+			function pasteHandler(e) {
+
+			   if (e.clipboardData) {
+
+				  var items = e.clipboardData.items;
+
+				  if (items) {
+					 
+					 for (var i = 0; i < items.length; i++) {
+
+						if (items[i].type.indexOf("image") !== -1) {
+
+						   var blob = items[i].getAsFile();
+						   var URLObj = window.URL || window.webkitURL;
+						   var source = URLObj.createObjectURL(blob);
+
+						   createImage(source);
+						}
+					 }
+				  }
+
+			   } else {
+
+				  setTimeout(checkInput, 1);
+			   }
+			}
+			
+			function createImage(source) {
+			   var pastedImage = new Image();
+
+			   pastedImage.src = source;
+			   pastedImage.width=holderWidth;
+			   
+			   focusItem.appendChild(pastedImage);
+			}
+			
+			function base64toBlob(base64Data, contentType) {
+				contentType = contentType || '';
+				var sliceSize = 1024;
+				var byteCharacters = atob(base64Data);
+				var bytesLength = byteCharacters.length;
+				var slicesCount = Math.ceil(bytesLength / sliceSize);
+				var byteArrays = new Array(slicesCount);
+
+				for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+					var begin = sliceIndex * sliceSize;
+					var end = Math.min(begin + sliceSize, bytesLength);
+
+					var bytes = new Array(end - begin);
+					for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+						bytes[i] = byteCharacters[offset].charCodeAt(0);
+					}
+					byteArrays[sliceIndex] = new Uint8Array(bytes);
+				}
+				return new Blob(byteArrays, { type: contentType });
+			}
+		</script>
+	</body>
+</html>

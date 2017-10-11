@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html style="overflow:hidden">
+	<head>
+		<title>My | Complete Notes</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="./css/demo.css">
+		<link rel="stylesheet" href="./css/font-awesome.css">
+		<link rel="stylesheet" href="./dist/css/medium-editor.css">
+		<link rel="stylesheet" href="./dist/css/themes/default.css">
+		<style>
+		
+			.wordwrap { 
+			   white-space: pre-wrap;      /* CSS3 */   
+			   white-space: -moz-pre-wrap; /* Firefox */    
+			   white-space: -pre-wrap;     /* Opera <7 */   
+			   white-space: -o-pre-wrap;   /* Opera 7 */    
+			   word-wrap: break-word;      /* IE */
+			}
+		
+			.ulClass {
+				
+				position: absolute;
+				bottom: 0px;
+				//overflow: auto;
+				height: auto;
+				padding-top: 0px;
+				right: 0px;
+				top: 75px;
+				left: 0px;
+				
+			}
+			.noteTab.selectedTab {
+						
+				background: linear-gradient(#EEF3F8, #EEF3F8) repeat scroll 0% 0% #EEF3F8;
+				cursor:default;
+			}
+			
+			.noteTab:hover {
+			
+				background: linear-gradient(#EEF3F8, #DEE3E8) repeat scroll 0% 0% #EEFFFE;
+			}
+			
+			.noteTab {
+			
+				padding: 12px 10px 12px 25px;
+				margin-left:-40px;
+				border-bottom: solid grey 1px;
+				cursor:pointer;
+			}			
+			
+			p {
+				margin-top: 0em;
+				font-size:16px;
+				margin-bottom:-0.5em;
+				font-family:"Calibri",Georgia,Serif;
+			}
+			
+			html, body, #mainTable
+			{
+			  height: 100%;
+			  margin-top:0px;
+			  margin-bottom:0px;
+			  margin-left:0px;
+			  margin-right:0px;
+			}
+			
+			.sidebar {
+				-moz-user-select: none;
+				position: absolute;
+				z-index: 1;
+				left: 0px;
+				top: 0px;
+				bottom: 0px;
+				width: 20%;
+				border-right: 1px solid #F0F0F0;
+			}
+			
+			.note {
+				position: absolute;
+				right: 0px;
+				//left:201px;
+				bottom: 0px;
+				//top: 71px;
+				padding-top: 4px;
+				padding-bottom: 0px;
+				line-height: 1.4em;
+				margin:0px;
+			}
+		</style>
+	</head>
+	
+	<body >
+		<div id="sideBar" class="sidebar" style="margin-top:0px;background-color:white;height:100%;overflow-y:auto;background:url('./noise.png');color:#3A4145;">
+			<input type="button" name="New Tab" value="New Tab" onclick="createTab('new')
+			" style="border-radius:5px;cursor:pointer;border:none;padding:10px;width:200px;margin-left:10px;margin-top:10px;"/>
+			<ul class="ulClass">
+				<li class="noteTab tab 1" style="list-style-type:none;padding: 13px 22px 11px;">
+					<div class="wordwrap">-----------------</div>
+				</li>
+				<li class="noteTab tab 2" style="list-style-type:none;padding: 13px 22px 11px;">
+					<div class="wordwrap">+++++++++++++++++</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="note tab 1" style="height:100%;overflow-y:auto;background-color:#FEFEFE;width:80%;margin:-1px;">
+			<div class="editable" id="holder" style="border-bottom:none;background-color:#FEFEFE;margin-left:0px;height:95%;margin:0px;padding:20px;margin-top:-27px;background:url('./noise.png');color:#3A4145">
+				<h2>.</h2>
+				<p id="firstPara" tabindex="0"><br></p>
+			</div>
+		</div>
+		
+		<div class="note tab 2" style="height:100%;overflow-y:auto;background-color:#FEFEFE;width:80%;margin:-1px;">
+			<div class="editable" style="border-bottom:none;background-color:#FEFEFE;margin-left:0px;height:95%;margin:0px;padding:20px;margin-top:-27px;background:url('./noise.png');color:#3A4145">
+				<h2>.</h2>
+				<p id="firstPara" tabindex="0"><br></p>
+			</div>
+		</div>
+		<canvas id="myCanvas" />
+		<script src="./dist/js/jquery-1.11.0.min.js"></script>
+		<script src="./dist/js/medium-editor.js"></script>
+		<script>
+			var editor = new MediumEditor('.editable', {
+					buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'superscript', 'subscript', 'orderedlist', 'unorderedlist', 'pre', 'outdent', 'indent'],
+					buttonLabels: 'fontawesome'
+				});
+		</script>
+		<script>
+
+			function convertToBase64() {
+			
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				var img = $('img').first();
+				var image = new Image();
+				image.src = img.src;
+				ctx.drawImage(image, 0, 0);
+				console.log(c.toDataURL());
+			}
+			
+			function createTab(tabName) {
+			
+				var totalLi = $('.noteTab').size();
+				console.log('Tab is created: ' + totalLi);
+				
+				var newLi = '<li class="noteTab tab ' + (totalLi+1) + '" style="list-style-type:none;padding: 13px 22px 11px;"><div class="wordwrap">' + tabName + '</div></li>';
+				var newNote = '<div class="note tab ' + (totalLi+1) + '" style="height:100%;overflow-y:auto;background-color:#FEFEFE;width:80%;margin:-1px;"><div class="editable" style="border-bottom:none;background-color:#FEFEFE;margin-left:0px;height:95%;margin:0px;padding:20px;margin-top:-27px;background:url(\'./noise.png\');color:#3A4145"><h2>.</h2><p id="firstPara" tabindex="0"><br></p></div></div>';
+				
+				$('.ulClass').append(newLi);
+				
+				$('.note').last().after(newNote);
+				
+				new MediumEditor('.editable', {
+					buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'superscript', 'subscript', 'orderedlist', 'unorderedlist', 'pre', 'outdent', 'indent'],
+					buttonLabels: 'fontawesome'
+				});
+				
+				$('.noteTab').last().click();
+				
+				convertToBase64();
+			}
+			
+			var focusItem = null; 
+			var insertedImage = null;
+			var pasteCatcher = null;
+			var holderWidth = $('.editable').get(0).clientWidth - 50;	
+			
+			function ignoreDrag(e) {
+				e.originalEvent.stopPropagation();
+				e.originalEvent.preventDefault();
+			}
+
+			$('.editable').bind('dragover', ignoreDrag);
+			$('.editable').bind('dragenter', ignoreDrag);
+			$('.editable').bind('dragend', ignoreDrag);
+
+			var crtlKeyPressed = false;
+
+			jQuery(document).keyup(function(event){
+			
+				console.log('key up fired: ' + event.keyCode);
+				
+				var code = (event.keyCode ? event.keyCode : event.which);
+				
+				if(code == 13) {
+				
+					populateTabIndexOnPara();
+				}
+				
+				if (code == 17) {
+				
+					crtlKeyPressed = false;
+				}
+
+			});
+			
+			//Save button capture
+			jQuery(document).keydown(function(event){
+			
+				console.log('key down fired: ' + event.keyCode);
+				
+				var code = (event.keyCode ? event.keyCode : event.which);
+				
+				if(code == 17) {
+				
+					crtlKeyPressed = true;
+				}
+				
+				if (code == 83) {
+				
+					if (crtlKeyPressed) {
+					
+						console.log('Save button pressed!');
+						saveInfo();
+						event.preventDefault();
+					} 
+				} 
+
+			});
+			
+			function saveInfo() {	
+			
+				console.log('Start saving the information');
+			}
+			
+			$(document).bind('DOMNodeInserted', function(e) {
+
+				console.log('Node Inserted: ' + e.target);
+				
+				//Changes
+				//insertedImage = e.target;
+				//firefoxPaste(insertedImage);
+			});
+
+			function populateTabIndexOnPara() {
+			
+				console.log('populateTabIndexOnPara called: ');
+
+				var paras = $('.selectedDiv').find('p');
+
+				paras.each(function (index) {
+				
+					console.log('populateTabIndexOnPara called: ');
+				
+					jQuery(this).prop('tabindex', index);
+					
+					$('p').focus( function() {
+				
+						console.log('set focus on: ' + this);
+					
+						focusItem = this; 
+					});					
+				});
+			}
+			
+			$('.editable').bind('drop', dropHandler);
+			
+			function dropHandler(e) {
+
+				ignoreDrag(e);
+			
+				console.log('holder.ondrop called: ');
+
+				var file = e.originalEvent.dataTransfer.files[0];
+
+				var reader = new FileReader();
+				 
+				reader.onloadend = function () {
+				
+					console.log('reader.onload called: ' + file);
+					console.log('reader.onload called: ' + file.src);
+					console.log('reader.onload called: ' + reader.result);
+					
+					if (typeof focusItem.innerHTML == 'undefined') {
+					
+						focusItem.innerHTML = '<img src="'+ reader.result + '" width="' + holderWidth + '"/>';
+					} else {
+									
+						focusItem.innerHTML = focusItem.innerHTML + '<img src="'+ reader.result + '" width="' + holderWidth + '"/>';
+					}
+					
+					/*Changes
+					var objecturl =  window.URL.createObjectURL(file);
+					
+					if (typeof focusItem.innerHTML == 'undefined') {
+					
+						focusItem.innerHTML = '<img src="'+ objecturl + '" width="' + holderWidth + '"/>';
+					} else {
+									
+						focusItem.innerHTML = focusItem.innerHTML + '<img src="'+ objecturl + '" width="' + holderWidth + '"/>';
+					}
+					*/	
+					console.log('reader.onload called - focusItem : ' + $(focusItem).prop('tabIndex') + ' focusItem.innerHTML: ' + focusItem.innerHTML);
+				};
+
+				console.log('Start readAsDataURL: ');
+				reader.readAsDataURL(file);
+				console.log('End readAsDataURL: ');
+
+				return false;
+			}
+
+			window.onload = function() {			
+				
+				console.log('window.onload called: ');
+				
+				focusItem = $('#firstPara').get(0);
+				
+				$('body').delegate('p', 'focus', function() {
+				
+					console.log('focus is set to: ' + this);
+					focusItem = this;
+				});
+				
+				console.log('window.onload called: focusItem is set to: ' + focusItem.tagName);
+				
+				if (!window.Clipboard) {
+				
+					console.log('window.Clipboard Not Present: ');
+
+					pasteCatcher = $('.editable').children().get(0);
+					console.log('pasteCatcher: ' + pasteCatcher);
+					pasteCatcher.setAttribute("contenteditable", "");
+
+					pasteCatcher.style.opacity = 1;
+
+					pasteCatcher.focus();
+
+					if(document.addEventListener) {
+
+						document.addEventListener("click", function() { pasteCatcher.focus(); });
+						
+					} else if (document.attachEvent) {
+
+						document.attachEvent("onclick", function() { pasteCatcher.focus(); });
+					}				  
+				} 
+				
+				if(document.addEventListener) {
+
+					document.addEventListener("paste", pasteHandler);
+					
+				} else if (document.attachEvent) {
+
+					document.attachEvent("onpaste", pasteHandler);
+				}
+
+				$('#sideBar').delegate('.tab', 'click', function() {
+				
+					console.log('Tab Clicked');
+					var tabName = $(this).prop('class').split('tab ')[1];	
+
+					if (tabName.indexOf(' selectedTab') != -1) {
+					
+						tabName = tabName.split(' selectedTab')[0];
+					}
+					
+					console.log('Tab Name:' + tabName);
+					
+					console.log('Number of tabs unselected:' + $('#sideBar > ul > li').size());
+					$('#sideBar > ul > li').removeClass('selectedTab');
+					console.log('Number of tabs selectedTab:' + $(this).size());
+					$(this).addClass('selectedTab');
+										
+					setDivVisibility(tabName);					
+				});		
+			}
+
+			function setDivVisibility(tabName) {
+			
+				var divObjects = $('.note');
+				
+				console.log('Tab Name > divObjects:' + divObjects.size());
+				
+				divObjects.each(function () {
+					
+					console.log('Tab Name > $(this).prop(class):' + $(this).prop('class'));
+					if ($(this).prop('class').split('tab ')[1] == tabName) {
+						console.log('Tab Name > class' +$(this).css('display'));
+						$(this).css('display', 'block');
+						console.log('Tab Name > $(this).children()' + $(this).children());
+						console.log('Tab Name > $(this).children().get(0)' + $(this).children().get(0));
+						console.log('Tab Name > $(this).children().get(0).addClass(selectedDiv)' + $($(this).children().get(0)).addClass('selectedDiv'));
+						$($(this).children().get(0)).addClass('selectedDiv');
+						
+						if ($(this).find('p').size() == 1) {
+							focusItem = $(this).find('p:first-child');
+						}
+						
+					} else {
+						console.log('Tab Name > class:' + $(this).css('display'));
+						$(this).css('display', 'none');
+						
+						if ($($(this).children().get(0)).hasClass('selectedDiv')) {
+							$($(this).children().get(0)).removeClass('selectedDiv');
+						}
+					}
+				}); 			
+			}
+			
+			function firefoxPaste(element) {
+			
+				console.log('firefoxPaste Called: ' + element);
+
+				var img = element.getAttribute('src');
+				var blobImage = base64toBlob(img.split(',')[1], img.split('data:')[1].split(';')[0]);
+				console.log(img);
+				var URLObj = window.URL || window.webkitURL;
+				var pastedURL = URLObj.createObjectURL(blobImage);
+				element.src = pastedURL;
+				element.width = holderWidth;
+			}
+			
+			function pasteHandler(e) {
+			
+				console.log('pasteHandler Called: ');
+				
+				if (e.clipboardData) {
+			   
+					console.log('pasteHandler Called > clipBoard available: ');
+
+					var items = e.clipboardData.items;
+
+					if (items) {
+					 
+						for (var i = 0; i < items.length; i++) {
+
+							if (items[i].type.indexOf("image") !== -1) {
+
+								//Changes
+								//var blob = items[i].getAsFile();
+								var image = items[i].getAsFile();	
+								var reader = new FileReader();
+								
+								reader.onloadend = function() {
+								
+									createImage(reader.result);	
+								}
+								
+								reader.readAsDataURL(image);				
+
+								//Changes
+														
+							}
+						}
+					}
+
+			   } else {
+
+				  setTimeout(checkInput, 1);
+			   }
+			}
+
+			function createImage(source) {
+			
+				console.log('createImage Called - source:  ' + source);
+				
+				var pastedImage = new Image();
+
+				pastedImage.src = source;
+				pastedImage.width=holderWidth;
+			   
+				console.log("focusItem on which image will be appended: " + focusItem);
+				
+				focusItem.appendChild(pastedImage);
+			}
+			
+			function base64toBlob(base64Data, contentType) {
+			
+				console.log('base64toBlob Called: ');
+				
+				contentType = contentType || '';
+				var sliceSize = 1024;
+				var byteCharacters = atob(base64Data);
+				var bytesLength = byteCharacters.length;
+				var slicesCount = Math.ceil(bytesLength / sliceSize);
+				var byteArrays = new Array(slicesCount);
+
+				for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+					var begin = sliceIndex * sliceSize;
+					var end = Math.min(begin + sliceSize, bytesLength);
+
+					var bytes = new Array(end - begin);
+					for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+						bytes[i] = byteCharacters[offset].charCodeAt(0);
+					}
+					byteArrays[sliceIndex] = new Uint8Array(bytes);
+				}
+				return new Blob(byteArrays, { type: contentType });
+			}
+		</script>
+	</body>
+</html>

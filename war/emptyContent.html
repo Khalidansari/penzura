@@ -1,0 +1,40 @@
+		<style id="noteSizePosition">
+			.noteSizePosition {
+				//width:calc(100% - 310px);
+				//left: 310px;
+				width:calc(100% - 300px);
+				left: 320px;
+				//position: relative;
+			}
+		</style>
+		<div id="sideBar" class="sidebar">		
+			<ul class="ulClass"></ul>			
+			<ul class="ulClassAdd">
+				<li id="newTabButton" class="tab 1 newPageButton">
+					<div class="wordwrap" contenteditable="false">
+						<span class="plusText"> + </span>
+						<span class="newpageText" >Add Page</span>
+					</div>
+				</li>
+			</ul>			
+			<ul class="ulClassRemove">
+				<li id="deleteButton" class="tab 1 newPageButton">
+					<div class="wordwrap" contenteditable="false" title="Drag and drop pages here to delete them">
+						<span class="newpageText">Recycle Bin</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="resizingBar" class="sidebar hresizeable" height="100%"></div>
+		<div class="noteSizePosition firstNote">
+			<div id="holder" class="holder">
+				<h2 style="opacity: 1;">Main Page</h2>
+				<p id="firstPara" tabindex="0">Please Add Page to Start!<br></p>				
+			</div>
+		</div>
+		<div class="noteSizePosition note tab 0" style="display:none">
+			<div class="editable medium-editor-placeholder" id="holder" class="holder">
+				<h2 style="opacity: 1;"></h2>
+				<p id="firstPara" tabindex="0"><br></p>
+			</div>
+		</div>
