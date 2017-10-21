@@ -1,0 +1,12 @@
+<!-- Indices written at Sat, 6 Dec 2014 19:39:29 IST -->
+
+<datastore-indexes>
+
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="TabPartTable" ancestor="false" source="auto">
+        <property name="tabName" direction="asc"/>
+        <property name="userName" direction="asc"/>
+        <property name="partOrder" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

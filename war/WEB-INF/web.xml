@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+	<session-config>
+        <session-timeout>100</session-timeout>
+	</session-config>
+
+	<servlet>
+		<servlet-name>saveContent</servlet-name>
+		<servlet-class>com.notes.upload.UploaderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>saveContent</servlet-name>
+		<url-pattern>/saveContent</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>home</servlet-name>
+		<servlet-class>com.notes.serve.ServerServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.notes.login.LoginServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>signup</servlet-name>
+		<jsp-file>/signup.jsp</jsp-file>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>signup</servlet-name>
+		<url-pattern>/Signup</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>signupservlet</servlet-name>
+		<servlet-class>com.notes.login.SignUpServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>signupservlet</servlet-name>
+		<url-pattern>/SignUpServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>logoutservlet</servlet-name>
+		<servlet-class>com.notes.login.LogoutServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>logoutservlet</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>imageservlet</servlet-name>
+		<servlet-class>com.notes.serve.ImageServerServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>imageservlet</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>info</servlet-name>
+		<jsp-file>/info.jsp</jsp-file>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>info</servlet-name>
+		<url-pattern>/info</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
